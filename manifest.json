@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ChatBotHub",
+  "version": "1.0.0",
+  "description": "多模型聊天聚合 - 统一访问 ChatGPT、Gemini、Kimi、Claude 等主流 AI 模型",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "ChatBotHub"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "contextMenus",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["sidebar-appbar.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
