@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chat Aggregator - 图标预览</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f5f7ff;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .model-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border-radius: 12px;
+      background: #f8f9ff;
+      border: 1px solid #e0e5f0;
+      transition: transform 0.2s;
+    }
+    .model-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .model-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .model-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+    .model-url {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+    .info {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fffbea;
+      border-radius: 8px;
+      border-left: 4px solid #f59e0b;
+    }
+    .info h3 {
+      margin-top: 0;
+      color: #92400e;
+    }
+    .info p {
+      color: #78350f;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 AI Chat Aggregator</h1>
+    <p class="subtitle">模型图标预览</p>
+
+    <div class="models-grid" id="modelsGrid"></div>
+
+    <div class="info">
+      <h3>📌 关于图标</h3>
+      <p>
+        当前显示的是使用 CSS 生成的占位符图标。要使用正式图标，请从各模型官网下载 favicon 或品牌图标，
+        并重命名为对应的文件名（如 chatgpt.png、gemini.png 等）放入 <code>models/</code> 目录。
+      </p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    const modelsGrid = document.getElementById('modelsGrid');
+
+    MODELS.forEach(model => {
+      const card = document.createElement('div');
+      card.className = 'model-card';
+      card.innerHTML = `
+        <div class="model-icon" style="background: ${model.color}">
+          ${model.name.charAt(0)}
+        </div>
+        <div class="model-name">${model.name}</div>
+        <div class="model-url">${model.url}</div>
+      `;
+      modelsGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
